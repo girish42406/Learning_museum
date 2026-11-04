@@ -12,7 +12,11 @@ import {
 } from 'lucide-react';
 import { GUIDE_RESPONSES, SUGGESTED_QUESTIONS, EXHIBITS, SECTIONS } from '../data/museumData';
 
-export default function MuseumGuide({ onSelectSection, onSelectExhibit }) {
+export default function MuseumGuide({
+  activeSection,
+  onSelectSection,
+  onSelectExhibit
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -85,7 +89,7 @@ Select one of the shortcuts below:`,
   };
 
   return (
-    <div className="museum-guide-root">
+    <div className={`museum-guide-root museum-guide-root--${activeSection}`}>
       {/* Floating Guide Activation Button */}
       {!isOpen && (
         <button
@@ -223,4 +227,3 @@ Select one of the shortcuts below:`,
     </div>
   );
 }
-

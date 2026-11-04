@@ -98,6 +98,7 @@ export default function App() {
 
         {/* Interactive Local AI Museum Guide */}
         <MuseumGuide
+          activeSection={activeSection}
           onSelectSection={handleSelectSection}
           onSelectExhibit={handleSelectExhibit}
         />

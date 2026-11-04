@@ -1485,7 +1485,7 @@
    ========================================================== */
 .museum-guide-root {
   position: absolute;
-  bottom: 1.5rem;
+  top: 1rem;
   right: 1.5rem;
   z-index: 50;
 }
@@ -1493,8 +1493,8 @@
 .btn-guide-trigger {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  padding: 0.75rem 1.25rem 0.75rem 0.85rem;
+  gap: 0.65rem;
+  padding: 0.6rem 1rem 0.6rem 0.7rem;
   background: rgba(15, 23, 42, 0.9);
   border: 1px solid rgba(56, 189, 248, 0.35);
   border-radius: 999px;
@@ -1551,10 +1551,11 @@
 }
 
 .guide-dialog-card {
-  width: 380px;
-  max-width: calc(100vw - 2rem);
-  height: 520px;
-  max-height: calc(100vh - 120px);
+  width: 320px;
+  max-width: calc(100vw - 3rem);
+  height: min(340px, calc(100dvh - 13rem));
+  max-height: calc(100vh - 6rem);
+  max-height: calc(100dvh - 6rem);
   background: rgba(11, 18, 33, 0.96);
   border: 1px solid rgba(56, 189, 248, 0.3);
   border-radius: 18px;
@@ -1566,7 +1567,7 @@
 }
 
 .guide-dialog-header {
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1795,6 +1796,30 @@
 .btn-guide-send:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+.exhibit-floating-label {
+  max-width: 180px;
+  padding: 6px 14px;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.25;
+  font-size: 13px;
+}
+
+.exhibit-floating-label[data-section="future"] {
+  max-width: 138px;
+  padding: 5px 8px;
+  font-size: 10px;
+}
+
+.museum-guide-root--future {
+  right: auto;
+  left: 1.5rem;
+}
+
+.museum-guide-root--future .guide-dialog-card {
+  height: min(300px, calc(100dvh - 13rem));
 }
 
 /* ==========================================================
@@ -2182,13 +2207,19 @@
   }
 
   .guide-dialog-card {
-    width: calc(100vw - 2rem);
-    height: 480px;
+    width: calc(100vw - 1.5rem);
+    max-width: 320px;
+    height: min(320px, calc(100dvh - 15rem));
     right: 0;
   }
   .museum-guide-root {
-    right: 1rem;
-    bottom: 1rem;
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+  .exhibit-floating-label {
+    max-width: 54px;
+    padding: 4px 5px;
+    font-size: 7.5px;
   }
   .exhibit-cards-grid {
     grid-template-columns: 1fr;
@@ -2224,5 +2255,72 @@
   }
   .lightbox-viewport {
     padding: 0.75rem;
+  }
+}
+
+@media (max-height: 500px) {
+  .museum-guide-root {
+    right: auto;
+    left: 1.5rem;
+  }
+  .guide-dialog-card {
+    height: min(320px, calc(100dvh - 6rem));
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .guide-dialog-header {
+    padding: 0.45rem 0.75rem;
+  }
+  .guide-architecture-note {
+    padding: 0.3rem 0.65rem;
+    font-size: 0.62rem;
+  }
+  .guide-chat-body {
+    min-height: 2rem;
+  }
+  .guide-suggestions-tray {
+    padding: 0.35rem 0.6rem;
+  }
+  .guide-input-form {
+    padding: 0.4rem 0.65rem;
+  }
+  .exhibit-floating-label {
+    max-width: 180px;
+    padding: 4px 8px;
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 640px) and (max-height: 500px) {
+  .museum-guide-root {
+    right: 0.75rem;
+    left: auto;
+  }
+  .guide-dialog-card {
+    height: min(180px, calc(100dvh - 6rem));
+  }
+}
+
+@media (max-width: 640px) {
+  .museum-guide-root--future {
+    right: 0.75rem;
+    left: 0.75rem;
+  }
+  .museum-guide-root--future .guide-dialog-card {
+    height: min(180px, calc(100dvh - 13rem));
+  }
+  .exhibit-floating-label[data-section="future"] {
+    max-width: 108px;
+    padding: 4px 6px;
+    font-size: 9px;
+  }
+}
+
+/* Bigger Museum Guide chatbot (desktop only) */
+@media (min-width: 641px) and (min-height: 501px) {
+  .guide-dialog-card,
+  .museum-guide-root--future .guide-dialog-card {
+    width: 420px;
+    height: min(540px, calc(100dvh - 12rem));
   }
 }

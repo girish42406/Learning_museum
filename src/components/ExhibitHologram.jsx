@@ -206,7 +206,9 @@ export default function ExhibitHologram({
   position,
   onSelect,
   isSelected,
-  showLabel = true
+  showLabel = true,
+  labelPosition = [0, -1.6, 0],
+  labelDistanceFactor = 14
 }) {
   const [hovered, setHovered] = useState(false);
   const meshRef = useRef();
@@ -279,12 +281,14 @@ export default function ExhibitHologram({
       {/* 3D Floating Label — conditionally suppressed when details modal or entrance hall is active */}
       {showLabel && (
         <Html
-          position={[0, -1.6, 0]}
+          position={labelPosition}
           center
-          distanceFactor={14}
+          distanceFactor={labelDistanceFactor}
           className="pointer-events-none"
         >
           <div
+            className="exhibit-floating-label"
+            data-section={exhibit.sectionId}
             onClick={(e) => {
               e.stopPropagation();
               onSelect(exhibit);
@@ -295,17 +299,15 @@ export default function ExhibitHologram({
               background: hovered ? 'rgba(30, 41, 59, 0.95)' : 'rgba(15, 23, 42, 0.85)',
               border: `1px solid ${hovered ? '#ffffff' : exhibit.color}`,
               borderRadius: '8px',
-              padding: '6px 14px',
               color: '#fff',
               fontFamily: 'var(--font-heading)',
-              fontSize: '13px',
               fontWeight: 600,
-              whiteSpace: 'nowrap',
               boxShadow: hovered ? `0 0 20px ${exhibit.color}` : '0 4px 12px rgba(0,0,0,0.5)',
               transform: hovered ? 'scale(1.08)' : 'scale(1)',
               transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
               display: 'flex',
               alignItems: 'center',
+              justifyContent: 'center',
               gap: '6px'
             }}
           >
@@ -325,4 +327,3 @@ export default function ExhibitHologram({
     </group>
   );
 }
-
